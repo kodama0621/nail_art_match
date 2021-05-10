@@ -4,17 +4,17 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name "名前(ニックネーム)" %><br />
+    <%= f.label :name "名前" ,class: "col-lg-2"%><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email "メールアドレス" %><br />
+    <%= f.label :email "メールアドレス" ,class: "col-lg-2" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password "パスワード" %>
+    <%= f.label :password "パスワード" ,class: "col-lg-2" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />

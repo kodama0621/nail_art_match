@@ -5,6 +5,7 @@
   <p>ユーザーネーム：<%= @post_image.user.name %></p>
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post_image.user == current_user %>
+    <%= link_to "編集", edit_post_image_path(@post_image) %>
     <%= link_to "削除", post_image_path(@post_image), method: :delete %>
   <% end %>
   <% if @post_image.liked_by?(current_user) %>

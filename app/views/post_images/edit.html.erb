@@ -1,0 +1,22 @@
+<main>
+  <% if @post_image.errors.any? %>
+    <p><%= @post_image.errors.count %>エラーにより、保存できませんでした</p>
+    <ul>
+      <% @post_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <h2>投稿編集</h2>
+　<%= form_with model: @post_image, local:true do |f| %>
+　<%= attachment_image_tag @post_image, :image %>
+　  <label for="inputImage">投稿画像</label>
+　  <%= f.attachment_field :image, placeholder: "画像投稿" %>
+    <label for="inputTitle">タイトル</label>
+    <%= f.text_field :title, placeholder: "タイトル" %>
+    <label for="inputCaption">本文</label>
+    <%= f.text_area :caption, placeholder: "本文" %>
+    <%= f.submit "変更を保存" %>
+  <% end %>
+</main>

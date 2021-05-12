@@ -6,16 +6,4 @@
   <% end %>
 </div>
 
-<% @post_images.each do |post_image| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-    <%= attachment_image_tag post_image, :image %>
-  <% end %>
-
-  <p>投稿ユーザー画像：<%= image_tag ('no_image2.png') %></p>
-  <p>タイトル：<%= post_image.title %></p>
-  <p>本文：<%= post_image.caption %></p>
-  <p>ユーザーネーム：<%= post_image.user.name %></p>
-  <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
-</div>
-<% end %>
+<%= render 'post_images/list', post_images: @post_images %>

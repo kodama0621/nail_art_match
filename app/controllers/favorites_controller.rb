@@ -2,25 +2,23 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @favorite = current_user.favorites.build(favorite_params)
-    @post_image = @favorite.post_image
-    if @favorite.valid?
-      @favorite.save
-      redirect_to post_image_path(@post_image)
+    @post_image = PostImage.find(params[:post_image_id])
+    favorite = @post_image.favorites.new(user_id: current_user.id)
+    if favorite.save
+      redirect_to request.referer
+    else
+      redirect_to request.referer
     end
   end
 
   def destroy
-    @favorite = Favorite.find(params[:id])
-    @favorite = @favorite.post_image
-    if @favorite.destroy
-      redirect_to post_image_path(@post_image)
+    @post_image = PostImage.find(params[:post_image_id])
+    favorite = @post_image.favorites.find_by(user_id: current_user.id)
+    if favorite.present?
+        favorite.destroy
+        redirect_to request.referer
+    else
+        redirect_to request.referer
     end
   end
-
-  private
-  def favorite_params
-    params.permit(:post_image_id)
-  end
 end
-

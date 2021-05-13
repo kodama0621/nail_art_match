@@ -58,7 +58,6 @@ class PostImagesController < ApplicationController
     render :index
   end
 
-
   private
   def post_image_params
     params.require(:post_image).permit(:title, :image, :caption)

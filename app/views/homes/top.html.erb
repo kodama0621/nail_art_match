@@ -1,1 +1,11 @@
 <h1>トップページ</h1>
+<% @post_images.each do |post_image| %>
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= attachment_image_tag post_image, :image %>
+  <% end %>
+  <p>投稿ユーザー画像：<%= image_tag ('no_image2.png') %></p>
+  <p>タイトル：<%= post_image.title %></p>
+  <p>本文：<%= post_image.caption %></p>
+</div>
+<% end %>
+<%= paginate @post_images %>

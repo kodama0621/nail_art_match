@@ -1,23 +1,23 @@
-<div class="like-index text-center">
-  <div class="user-name">
-    <%= @user.name %>さんのお気に入り
-  </div>
-  <% if @favorites.length != 0 %>
-    <% @favorites.each do |post_image| %>
-      <div class="post_image-contents d-flex">
-        <% if post_image.images.present? %>
-          <%= image_tag post_image.images[0], class: "index-img" %>
-        <% else %>
-          <%= image_tag "no_image1.png", class: "index-img" %>
-        <% end %>
-        <div class="post_image">
-          <div class="title">
-            タイトル：<%= link_to post_image.title, post_image_path(post_image) %>
-          </div>
-        </div>
-      </div>
+<table>
+  <caption>お気に入り一覧</caption>
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>タイトル</th>
+      <th>本文</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.post_image.user.name %></td>
+        <td>
+          <%= link_to post_image_path(favorite.post_image) do %>
+            <%= favorite.post_image.title %>
+          <% end %>
+        </td>
+        <td><%= favorite.post_image.caption %></td>
+      </tr>
     <% end %>
-  <% else %>
-    お気に入りはまだ登録されていません
-  <% end %>
-</div>
+  </tbody>
+</table>

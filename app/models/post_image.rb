@@ -4,6 +4,7 @@ class PostImage < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
 
   validates :title, presence: true
   validates :image, presence: true
@@ -13,12 +14,12 @@ class PostImage < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
-  def favorited_by(user)
-    Favorite.find_by(user_id: user.id, post_image_id: id)
+  def favorited_by?(user)
+    Favorites.where(user_id: user).exists?
   end
 
   def self.search(keyword)
-    where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
+    PostImage.where(['title ? OR caption LIKE ?', "%#{keyword}%", "%#{keyword}%"])
   end
 
 end

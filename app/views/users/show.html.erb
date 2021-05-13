@@ -6,5 +6,28 @@
     <p><%= link_to "退会する", user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
   <% end %>
 </div>
+<table>
+  <caption>お気に入り一覧</caption>
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>タイトル</th>
+      <th>本文</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.post_image.user.name %></td>
+        <td>
+          <%= link_to post_image_path(favorite.post_image) do %>
+            <%= favorite.post_image.title %>
+          <% end %>
+        </td>
+        <td><%= favorite.post_image.caption %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= render 'post_images/list', post_images: @post_images %>

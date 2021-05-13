@@ -20,15 +20,15 @@
       <% end %>
     </p>
   <% end %>
-  <% if current_user != @post_image.user %>
-    <div class="post_image-favorite">
-      <% if @post_image.favorited_by(current_user).blank? %>
-        <%= link_to "お気に入りに保存", post_image_favorites_path(@post_image), method: :post, class: "btn btn-success btn-sm" %>
-      <% else %>
-        <%= link_to "保存済み", post_image_favorite_path(@post_image,@post_image.favorited_by(current_user)), method: :delete, class: "btn btn-outline-success btn-sm" %>
-      <% end %>
-    </div>
-  <% end %>
+  <tbody>
+  　<tr>
+    　<% if @post_image.favorited_by?(current_user) %>
+      　<td><%= link_to "お気に入り削除", post_favorites_path(@post_image), method: :delete %></td>
+    　<% else %>
+      　<td><%= link_to "お気に入り登録", post_favorites_path(@post_image), method: :post %></td>
+    　<% end %>
+  　</tr>
+　</tbody>
 </div>
 
 <div class="comments">

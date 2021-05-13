@@ -52,6 +52,13 @@ class PostImagesController < ApplicationController
     redirect_to post_images_path
   end
 
+  def search
+    @post_images = PostImage.search(params[:keyword])
+    @keyword = params[:keyword]
+    render :index
+  end
+
+
   private
   def post_image_params
     params.require(:post_image).permit(:title, :image, :caption)

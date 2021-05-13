@@ -17,4 +17,8 @@ class PostImage < ApplicationRecord
     Favorite.find_by(user_id: user.id, post_image_id: id)
   end
 
+  def self.search(keyword)
+    where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+
 end

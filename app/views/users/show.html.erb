@@ -1,15 +1,30 @@
-<div class="profile-container">
-  <h3 class="profile-name"><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill,10,10, format: 'jpeg', fallback: "no_image1.png" %>
-  <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-    <p><%= link_to "退会する", user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
-  <% end %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
+        <h2>マイページ</h2>
 
-  <div class="row mt-3">
-    <h3>マイページ</h3>
+        <%= form_with model: @user, local:true do |f| %>
+        <div class="form_group">
+          <%= @user.name %>
+        </div>
+        <div class="form_group">
+          <%= attachment_image_tag @user, :profile_image, :fill,10,10, format: 'jpeg', fallback: "no_image1.png" %>
+        </div>
+  　　　   　<% if @user.id == current_user.id %>
+    　　　  　　<p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    　　    　<p><%= link_to "退会する", user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
+  　　　   　<% end %>
+        <% end %>
+
+      </div>
+    </div>
   </div>
+</main>
+
+
+
 
   <div class="row mt-3">
     <div class="col-lg-2">
@@ -20,16 +35,5 @@
     </div>
   </div>
 
-  <table class="table table-bordered">
-    <tr>
-      <th>名前</th>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <th>プロフィール画像</th>
-      <td><%= attachment_image_tag @user, :profile_image, :fill,10,10, format: 'jpeg', fallback: "no_image1.png" %></td>
-    </tr>
-  </table>
-</div>
-
 <%= render 'post_images/list', post_images: @post_images %>
+

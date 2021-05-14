@@ -10,30 +10,17 @@
           <%= @user.name %>
         </div>
         <div class="form_group">
-          <%= attachment_image_tag @user, :profile_image, :fill,10,10, format: 'jpeg', fallback: "no_image1.png" %>
+          <%= attachment_image_tag @user, :profile_image, :fill,100,100, format: 'jpeg', fallback: "no_image1.png" %>
         </div>
-  　　　   　<% if @user.id == current_user.id %>
-    　　　  　　<p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-    　　    　<p><%= link_to "退会する", user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
-  　　　   　<% end %>
+          <% if @user.id == current_user.id %>
+            <p><%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %></p>
+            <p><%= link_to "退会", user_path(current_user.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
+          <% end %>
         <% end %>
-
       </div>
     </div>
   </div>
 </main>
-
-
-
-
-  <div class="row mt-3">
-    <div class="col-lg-2">
-      <h4>登録情報</h4>
-    </div>
-    <div class="col-lg-4 mb-3">
-      <%= link_to "プロフィール編集", edit_user_path(@user) ,class: "btn btn-success" %>
-    </div>
-  </div>
-
 <%= render 'post_images/list', post_images: @post_images %>
+
 

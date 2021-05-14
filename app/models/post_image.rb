@@ -15,7 +15,7 @@ class PostImage < ApplicationRecord
   end
 
   def favorited_by?(user)
-    Favorites.where(user_id: user).exists?
+    Favorite.find_by(user_id: user.id, post_image_id: id)
   end
 
   def self.search(keyword)

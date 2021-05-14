@@ -29,23 +29,14 @@
               <% end %>
             </span>
           <% end %>
-
-          <% if @post_image.favorited_by?(current_user) %>
-            <span>
-              <%= link_to(post_image_favorites_path(@post_image), class:"text-dark", method: :delete) do %>
-                <i class="fas fa-check-square"></i> <%= @post_image.favorites.count %>
-              <% end %>
-            </span>
-            <% else %>
-            <span>
-              <%= link_to(post_image_favorites_path(@post_image), class:"text-dark", method: :post) do %>
-                <i class="far fa-check-square"></i> <%= @post_image.favites.count %>
-              <% end %>
-            </span>
+          <% if @post_image.favorited_by?(current_user).blank? %>
+        　　<%= link_to "お気に入りに保存", post_image_favorites_path(@post_image), method: :post, class: "btn btn-success btn-sm" %>
+          <% else %>
+            <%= link_to "保存済み", post_image_favorite_path(@post_image,@post_image.favorited_by?(current_user)), method: :delete, class: "btn btn-outline-success btn-sm" %>
           <% end %>
 
           <% if @post_image.user == current_user %>
-            <span> ｜ </span><%= link_to "削除", post_image_path(@post_image), class:"text-dark", method: :delete %>
+            <span> ｜ </span><%= link_to "削除", post_image_path(@post_image), class:"btn btn-danger btn-sm", method: :delete %>
           <% end %>
         </div>
       </div>

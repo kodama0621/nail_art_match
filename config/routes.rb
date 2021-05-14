@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
   end
-  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy] do
+    member do
+      get :favorite
+    end
+  end
 
 end

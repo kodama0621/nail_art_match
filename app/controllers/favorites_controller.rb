@@ -19,6 +19,10 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def favorite
+  end
+
+
   private
   def favorite_params
     params.permit(:post_image_id)

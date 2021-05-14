@@ -1,33 +1,35 @@
 <div class="profile-container">
   <h3 class="profile-name"><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill,50,50, format: 'jpeg', fallback: "no_image1.png" %>
+  <%= attachment_image_tag @user, :profile_image, :fill,10,10, format: 'jpeg', fallback: "no_image1.png" %>
   <% if @user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
     <p><%= link_to "退会する", user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
   <% end %>
-</div>
-<table>
-  <caption>お気に入り一覧</caption>
-  <thead>
+
+
+  <div class="row mt-3">
+    <h3>マイページ</h3>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-lg-2">
+      <h4>登録情報</h4>
+    </div>
+    <div class="col-lg-4 mb-3">
+      <%= link_to "プロフィール編集", edit_user_path(@user) ,class: "btn btn-success" %>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
     <tr>
-      <th>ユーザー</th>
-      <th>タイトル</th>
-      <th>本文</th>
+      <th>名前</th>
+      <td><%= @user.name %></td>
     </tr>
-  </thead>
-  <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= favorite.post_image.user.name %></td>
-        <td>
-          <%= link_to post_image_path(favorite.post_image) do %>
-            <%= favorite.post_image.title %>
-          <% end %>
-        </td>
-        <td><%= favorite.post_image.caption %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <tr>
+      <th>プロフィール画像</th>
+      <td><%= attachment_image_tag @user, :profile_image, :fill,10,10, format: 'jpeg', fallback: "no_image1.png" %></td>
+    </tr>
+  </table>
+</div>
 
 <%= render 'post_images/list', post_images: @post_images %>

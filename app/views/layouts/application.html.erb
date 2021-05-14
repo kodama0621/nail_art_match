@@ -31,14 +31,13 @@
         <li class="nav-item"><%= link_to "ログイン",new_user_session_path ,class: "btn btn-outline-secondary mr-4"%></li>
       </ul>
       <% end %>
-    </nav>
-
-    <div class="search-form">
+      <div class="search-form">
       <%= form_with url: search_path, method: :get, local: true do |f| %>
         <%= f.text_field :keyword, value: @keyword %>
         <%= f.submit "検索" %>
       <% end %>
-    </div>
+      </div>
+    </nav>
 
     <%= yield %>
   </body>

@@ -12,7 +12,7 @@
       <div class="col-10">
         <p class="card-title">
           <%= link_to(post_image_path(post_image.id), class:"text-dark") do %>
-            <strong><i class="far fa-flag"></i><span> <%= post_image.title %></span></strong>
+            <strong><i class="fas fa-hand-sparkles"></i><span> <%= post_image.title %></span></strong>
           <% end %>
         </p>
         <p class="card-text">説明：<%= post_image.caption %></p>
@@ -25,3 +25,5 @@
 <% end %>
 <%= paginate post_images %>
 </div>
+
+

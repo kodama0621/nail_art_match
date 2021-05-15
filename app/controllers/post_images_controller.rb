@@ -24,7 +24,7 @@ class PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.page(params[:page]).reverse_order
+    @post_images = PostImage.page(params[:page]).reverse_order.search(params[:search])
   end
 
   def show
@@ -53,9 +53,7 @@ class PostImagesController < ApplicationController
   end
 
   def search
-    @post_images = PostImage.search(params[:keyword])
-    @keyword = params[:keyword]
-    render :index
+    @post_image = PostImage.search(params[:keyword])
   end
 
   private

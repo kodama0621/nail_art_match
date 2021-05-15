@@ -1,26 +1,29 @@
 <main>
   <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-
-        <h2>マイページ</h2>
-
-        <%= form_with model: @user, local:true do |f| %>
-        <div class="form_group">
-          <%= @user.name %>
+    <div class="row mt-3">
+      <p class="display-1 mx-auto text-center">マイページ</p>
+    </div>
+    <div class="profile-col w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image1.png", class:"rounded-circle"; %>
+      <h5 class="profile-name display-4"><%= @user.name %></h5>
+      <h4 class="profile-body"><%= @user.profile_body %></h4>
+      <% if @user.id == current_user.id %>
+        <div class="mt-auto">
+          <p><%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %></p>
+          <p><%= link_to "退会", user_path(current_user.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
         </div>
-        <div class="form_group">
-          <%= attachment_image_tag @user, :profile_image, :fill,100,100, format: 'jpeg', fallback: "no_image1.png" %>
-        </div>
-          <% if @user.id == current_user.id %>
-            <p><%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %></p>
-            <p><%= link_to "退会", user_path(current_user.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に退会してもよろしいですか？" %></p>
-          <% end %>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
+
+  <div class="container">
+    <div class="row mt-3">
+      <p class="display-1 mx-auto text-center">投稿履歴</p>
+    </div>
+    <%= render 'post_images/list', post_images: @post_images %>
+  </div>
+
 </main>
-<%= render 'post_images/list', post_images: @post_images %>
+
 
 

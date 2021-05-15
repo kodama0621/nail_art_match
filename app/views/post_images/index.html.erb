@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
+    <p class="display-1 mx-auto text-center">投稿一覧</p>
     <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-top: 25px;">
       <%= form_with url: post_images_path, method: :get, local: true do |f| %>
         <%= f.text_field :search, class: "search-field", placeholder: "タイトルを入力して下さい。" %>
-        <%= f.submit '検索', name: nil, class: "btn btn-default" %>
+        <%= f.submit '検索', name: nil, class: "btn btn-outline-success" %>
       <% end %>
     </div>
   </div>

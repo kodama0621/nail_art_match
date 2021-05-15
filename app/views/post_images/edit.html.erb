@@ -10,8 +10,9 @@
           <% end %>
         <% end %>
 
-        <%= form_with model: @post_image, local:true do |f| %>
+        <%= form_with model: @post_image, local: true do |f| %>
           <%= attachment_image_tag @post_image, :image, class: "w-100" %>
+          <%= f.attachment_field :image, class: "w-100" %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-hand-sparkles"></i></span>

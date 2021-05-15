@@ -16,10 +16,10 @@
             </div>
             <%= f.text_area :profile_body, class: "form-control", placeholder:"自己紹介文" %>
           </div>
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image1.png", class:"mb-3" %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image1.png", class:"mb-3" %>
           <div class="input-group my-3">
             <label>
-            <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "w-100" %>
+              <%= f.attachment_field :profile_image, class: "w-100" %>
             </label>
           </div>
           <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-info mt-5" %>

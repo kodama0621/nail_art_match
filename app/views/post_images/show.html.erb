@@ -30,11 +30,13 @@
             </span>
           <% end %>
           <% if @post_image.favorited_by?(current_user).blank? %>
-        　　<%= link_to "お気に入りに保存", post_image_favorites_path(@post_image), method: :post, class: "btn btn-success btn-sm" %>
+        　　<%= link_to "お気に入りに保存", post_image_favorites_path(@post_image), method: :post, class: "btn btn-primary btn-sm" %>
           <% else %>
             <%= link_to "保存済み", post_image_favorite_path(@post_image,@post_image.favorited_by?(current_user)), method: :delete, class: "btn btn-outline-success btn-sm" %>
           <% end %>
-
+          <% if @post_image.user == current_user %>
+            <span> ｜ </span><%= link_to "編集", edit_post_image_path(@post_image), class:"btn btn-success btn-sm" %>
+          <% end %>
           <% if @post_image.user == current_user %>
             <span> ｜ </span><%= link_to "削除", post_image_path(@post_image), class:"btn btn-danger btn-sm", method: :delete %>
           <% end %>

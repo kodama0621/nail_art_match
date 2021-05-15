@@ -1,4 +1,10 @@
 <div class="container">
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のエラーが発生しました
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light py-4 mb-0">プロフィール編集</h5>
@@ -16,7 +22,7 @@
             </div>
             <%= f.text_area :profile_body, class: "form-control", placeholder:"自己紹介文" %>
           </div>
-            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image1.png", class:"mb-3" %>
+            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image1.jpg", size: "100x100", class:"mb-3" %>
           <div class="input-group my-3">
             <label>
               <%= f.attachment_field :profile_image, class: "w-100" %>

@@ -1,14 +1,14 @@
 <div class="container">
+  <% if @post_image.errors.any? %>
+    <%= @post_image.errors.count %>件のエラーが発生しました
+    <% @post_image.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0">新規投稿</h5>
       <div class="form-body p-4">
-        <% if @post_image.errors.any? %>
-          <%= @post_image.errors.count %>件のエラーが発生しました
-          <% @post_image.errors.full_messages.each do |message| %>
-            <%= message %>
-          <% end %>
-        <% end %>
         <%= form_with model: @post_image, local:true do |f| %>
           <%= f.attachment_field :image, class: "w-100" %>
           <div class="input-group mb-3 mt-4">

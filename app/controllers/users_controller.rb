@@ -10,14 +10,18 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+      flash[:notice] = "保存できました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = 'ユーザーを削除しました。'
+    flash[:notice] = "ユーザーを削除しました。"
     redirect_to :root
   end
 
@@ -30,7 +34,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :profile_body)
   end
 
 end

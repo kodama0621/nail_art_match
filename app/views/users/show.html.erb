@@ -4,7 +4,7 @@
       <p class="display-1 mx-auto text-center">マイページ</p>
     </div>
     <div class="profile-col w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image1.png", class:"rounded-circle"; %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image1.jpg", size: "100x100", class:"rounded-circle"; %>
       <h5 class="profile-name display-4"><%= @user.name %></h5>
       <h4 class="profile-body"><%= @user.profile_body %></h4>
       <% if @user.id == current_user.id %>

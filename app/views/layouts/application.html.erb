@@ -11,28 +11,33 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-light navbar-fixed-top navbar-expand-lg">
-      <div class="navbar-header">
-        <%= link_to root_path do %>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <%= link_to root_path do %>
           <i class="far fa-hand-peace">Nail Art Match</i>
-        <% end %>
-      </div>
-      <% if user_signed_in? %>
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id) ,class: "btn btn-outline-secondary mr-4"%></li>
-        <li class="nav-item"><%= link_to "新規投稿", new_post_image_path ,class: "btn btn-outline-secondary mr-4"%></li>
-        <li class="nav-item"><%= link_to "投稿一覧", post_images_path ,class: "btn btn-outline-secondary mr-4" %></li>
-        <li class="nav-item"><%= link_to "お気に入り一覧", favorite_user_path(current_user.id) ,class: "btn btn-outline-secondary mr-4" %></li>
-        <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "btn btn-outline-secondary mr-4"%></li>
-      </ul>
-      <% else %>
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><%= link_to "About", about_path, class: "btn btn-outline-secondary mr-4" %></li>
-        <li class="nav-item"><%= link_to "新規登録",new_user_registration_path, class: "btn btn-outline-secondary mr-4"%></li>
-        <li class="nav-item"><%= link_to "ログイン",new_user_session_path ,class: "btn btn-outline-secondary mr-4"%></li>
-      </ul>
-      <% end %>
-    </nav>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id) ,class: "btn btn-outline-secondary mr-4"%></li>
+              <li class="nav-item"><%= link_to "新規投稿", new_post_image_path ,class: "btn btn-outline-secondary mr-4"%></li>
+              <li class="nav-item"><%= link_to "投稿一覧", post_images_path ,class: "btn btn-outline-secondary mr-4" %></li>
+              <li class="nav-item"><%= link_to "お気に入り一覧", favorite_user_path(current_user.id) ,class: "btn btn-outline-secondary mr-4" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "btn btn-outline-secondary mr-4"%></li>
+            <% else %>
+              <li class="nav-item"><%= link_to "About", about_path, class: "btn btn-outline-secondary mr-4" %></li>
+              <li class="nav-item"><%= link_to "新規登録",new_user_registration_path, class: "btn btn-outline-secondary mr-4"%></li>
+              <li class="nav-item"><%= link_to "ログイン",new_user_session_path ,class: "btn btn-outline-secondary mr-4"%></li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <%= yield %>
   </body>

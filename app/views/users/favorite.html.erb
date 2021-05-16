@@ -1,7 +1,5 @@
-<div class="like-index text-center">
-  <div class="user-name">
-    <%= @user.name %>さんのお気に入り一覧
-  </div>
+<div class="container text-center">
+  <h2 class="mx-auto py-5"><%= @user.name %>さんのお気に入り一覧</h2>
   <% if @favorites.length != 0 %>
     <% @favorites.each do |post_image| %>
     <div class="card w-50 mx-auto mt-4 shadow-lg">

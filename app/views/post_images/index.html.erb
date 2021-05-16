@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <p class="display-1 mx-auto text-center">投稿一覧</p>
+    <h1 class="col mt-5 p-0 text-center">投稿一覧</h1>
     <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-top: 25px;">
       <%= form_with url: post_images_path, method: :get, local: true do |f| %>
         <%= f.text_field :search, class: "search-field", placeholder: "タイトルを入力して下さい。" %>

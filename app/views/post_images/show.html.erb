@@ -1,10 +1,10 @@
 <div class="container post-detail py-5">
   <div class="card w-50 mx-auto mt-4 shadow-lg">
-    <%= attachment_image_tag @post_image, :image, class:"card-img-top"; %>
+    <%= attachment_image_tag @post_image, :image, size: "500x400", class:"card-img-top"; %>
     <div class="card-body">
       <div class="row">
         <div class="col-3">
-          <%= attachment_image_tag @post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image1.jpg", size: "100x100", class:"mt-3 rounded-circle"; %>
+          <%= attachment_image_tag @post_image.user, :profile_image, :fill, 100, 100, fallback: "no_image1.jpg", size: "100x100", class:"mt-3 rounded-circle"; %>
         </div>
         <div class="col-9">
           <p class="card-title">
@@ -38,7 +38,7 @@
             <span> ｜ </span><%= link_to "編集", edit_post_image_path(@post_image), class:"btn btn-success btn-sm" %>
           <% end %>
           <% if @post_image.user == current_user %>
-            <span> ｜ </span><%= link_to "削除", post_image_path(@post_image), class:"btn btn-danger btn-sm", method: :delete %>
+            <span> ｜ </span><%= link_to "削除", post_image_path(@post_image), class:"btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に削除してもよろしいですか？" %>
           <% end %>
         </div>
       </div>

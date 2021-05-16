@@ -6,8 +6,8 @@
     <% end %>
   <% end %>
   <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0">新規投稿</h5>
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+      <h2 class="bg-light py-4 mb-0">新規投稿</h2>
       <div class="form-body p-4">
         <%= form_with model: @post_image, local:true do |f| %>
           <%= f.attachment_field :image, class: "w-100" %>
@@ -19,7 +19,7 @@
           </div>
           <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"コメントここに" %>
           <hr>
-          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-success mt-4" %>
         <% end %>
       </div>
     </div>

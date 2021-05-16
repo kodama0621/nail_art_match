@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+
+  before_action :ensure_current_user, {only: [:edit, :update, :destroy, :favorite]}
+
+  def ensure_current_user
+    if current_user.id != params[:id].to_i
+      redirect_to user_path(current_user)
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images.page(params[:page]).reverse_order

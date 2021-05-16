@@ -1,4 +1,4 @@
-<div class="container">
+<section class="container">
   <% if @user.errors.any? %>
     <%= @user.errors.count %>件のエラーが発生しました
     <% @user.errors.full_messages.each do |message| %>
@@ -7,7 +7,7 @@
   <% end %>
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light py-4 mb-0">プロフィール編集</h5>
+      <h2 class="bg-light py-4 mb-0">プロフィール編集</h2>
       <div class="form-body p-4">
         <%= form_with model: @user, local: true do |f| %>
           <div class="input-group mb-3">
@@ -18,7 +18,7 @@
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-hand-holding-heart"></i></span>
             </div>
             <%= f.text_area :profile_body, class: "form-control", placeholder:"自己紹介文" %>
           </div>
@@ -28,9 +28,9 @@
               <%= f.attachment_field :profile_image, class: "w-100" %>
             </label>
           </div>
-          <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-info mt-5" %>
+          <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-success mt-5" %>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+</section>

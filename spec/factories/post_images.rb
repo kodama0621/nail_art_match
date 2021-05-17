@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :post_image do
-    title { Faker::Lorem.title}
-    caption { Faker::Lorem.caption}
-    image { File.open("#{Rails.root}/assets/images/sample.png") }
+    title { Faker::Lorem.characters(number: 5) }
+    caption { Faker::Lorem.characters(number: 20) }
     user
   end
 end

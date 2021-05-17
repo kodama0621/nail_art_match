@@ -24,6 +24,7 @@ class PostImagesController < ApplicationController
   end
 
   def index
+    puts "作成したキー #{ENV['SECRET_KEY']}"
     @post_images = PostImage.page(params[:page]).reverse_order.search(params[:search])
   end
 

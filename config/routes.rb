@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get '/about' => 'homes#about'
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
   resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :likes, only: [:create, :destroy]

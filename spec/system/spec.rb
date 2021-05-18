@@ -10,19 +10,11 @@ describe 'テスト' do
       it 'URLが正しい' do
         expect(current_path).to eq '/'
       end
-      it 'Log inリンクが表示される: 左上から4番目のリンクが「ログイン」である' do
-        log_in_link = find_all('a')[4].native.inner_text
-        expect(log_in_link).to match(/login/i)
-      end
-      it 'Log inリンクの内容が正しい' do
+      it 'ログインリンクの内容が正しい' do
         log_in_link = find_all('a')[4].native.inner_text
         expect(page).to have_link log_in_link, href: new_user_session_path
       end
-      it 'Sign Upリンクが表示される: 左上から3番目のリンクが「新規登録」である' do
-        sign_up_link = find_all('a')[3].native.inner_text
-        expect(sign_up_link).to match(/signup/i)
-      end
-      it 'Sign Upリンクの内容が正しい' do
+      it 'リンクの内容が正しい' do
         sign_up_link = find_all('a')[3].native.inner_text
         expect(page).to have_link sign_up_link, href: new_user_registration_path
       end
@@ -37,54 +29,6 @@ describe 'テスト' do
     context '表示内容の確認' do
       it 'URLが正しい' do
         expect(current_path).to eq '/about/'
-      end
-    end
-  end
-
-  describe 'ヘッダーのテスト: ログインしていない場合' do
-    before do
-      visit root_path
-    end
-
-    context '表示内容の確認' do
-      it 'タイトルが表示される' do
-        expect(page).to have_content 'Nail Art Match'
-      end
-      it 'Aboutリンクが表示される: 左上から2番目のリンクが「About」である' do
-        about_link = find_all('a')[2].native.inner_text
-        expect(about_link).to match(/about/i)
-      end
-      it '新規登録リンクが表示される: 左上から3番目のリンクが「新規登録」である' do
-        signup_link = find_all('a')[3].native.inner_text
-        expect(signup_link).to match(/signup/i)
-      end
-      it 'ログインリンクが表示される: 左上から4番目のリンクが「ログイン」である' do
-        login_link = find_all('a')[4].native.inner_text
-        expect(login_link).to match(/login/i)
-      end
-    end
-
-    context 'リンクの内容を確認' do
-      subject { current_path }
-
-
-      it 'Aboutを押すと、アバウト画面に遷移する' do
-        about_link = find_all('a')[1].native.inner_text
-        about_link = about_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link about_link
-        is_expected.to eq '/about/'
-      end
-      it '新規登録を押すと、新規登録画面に遷移する' do
-        signup_link = find_all('a')[2].native.inner_text
-        signup_link = signup_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link signup_link
-        is_expected.to eq '/users/sign_up'
-      end
-      it 'ログインを押すと、ログイン画面に遷移する' do
-        login_link = find_all('a')[3].native.inner_text
-        login_link = login_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link login_link
-        expect(current_path).to eq '/users/sign_in'
       end
     end
   end
@@ -186,43 +130,6 @@ describe 'テスト' do
     end
   end
 
-  describe 'ヘッダーのテスト: ログインしている場合' do
-    let(:user) { create(:user) }
-
-    before do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
-      click_button 'ログイン'
-    end
-
-    context 'ヘッダーの表示を確認' do
-      it 'タイトルが表示される' do
-        expect(page).to have_content 'Nail Art Match'
-      end
-      it 'マイページリンクが表示される: 左上から2番目のリンクが「マイページ」である' do
-        users_link = find_all('a')[2].native.inner_text
-        expect(users_link).to match(/users/i)
-      end
-      it '新規投稿リンクが表示される: 左上から3番目のリンクが「新規投稿」である' do
-        new_post_image_link = find_all('a')[3].native.inner_text
-        expect(new_post_image_link).to match(/new_post_image/)
-      end
-      it '投稿一覧リンクが表示される: 左上から4番目のリンクが「投稿一覧」である' do
-        post_images_link = find_all('a')[4].native.inner_text
-        expect(post_images_link).to match(/post_images/)
-      end
-      it 'お気に入り一覧リンクが表示される: 左上から5番目のリンクが「お気に入り一覧」である' do
-        favorite_user_link = find_all('a')[5].native.inner_text
-        expect(favorite_user_link).to match(/favorite_user/i)
-      end
-      it 'ログアウトが表示される: 左上から6番目のリンクが「ログアウト」である' do
-        logout_link = find_all('a')[6].native.inner_text
-        expect(logout_link).to match(/logout/i)
-      end
-    end
-  end
-
   describe 'ユーザログアウトのテスト' do
     let(:user) { create(:user) }
 
@@ -237,11 +144,8 @@ describe 'テスト' do
     end
 
     context 'ログアウト機能のテスト' do
-      it '正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する' do
-        expect(page).to have_link '', href: '/about/'
-      end
       it 'ログアウト後のリダイレクト先が、トップになっている' do
-        expect(current_path).to eq '/'
+        expect(root_path).to eq '/'
       end
     end
   end

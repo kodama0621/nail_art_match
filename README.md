@@ -30,13 +30,12 @@ https://docs.google.com/spreadsheets/d/1aNN0hTBxZyE2YnVNwOqp_LHbQfZ_qmyuwq_GZNXO
 
 ## 開発環境
 
-言語：HTML,CSS,JavaScript,Ruby
+言語：HTML,CSS,Ruby
 
 フレームワーク：Ruby on Rails
 
 Gem：devise
 
-JS ライブラリ：jQuery
 
 CSS フレームワーク：BootStrap
 
